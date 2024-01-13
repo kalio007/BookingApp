@@ -20,7 +20,11 @@ func main() {
 	//array my have a size and its data type
 	//this array is index based like
 	// bookings[0] = "Nana"
-	var bookings [50]string
+
+	//var bookings [50]string
+
+	// to convert the array to slice a more convienet array
+	var bookings []string
 
 	// collecting user's data
 	var firstName string
@@ -42,17 +46,20 @@ func main() {
 	remainingTicket = remainingTicket - userTicket
 	//to perfome ops the vairble has to have the same type
 
-	bookings[0] = firstName + " " + lastName
+	//using the array
+	// bookings[0] = firstName + " " + lastName we ue this for an array
+	bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("The whole array: %v \n", bookings)
+	fmt.Printf("The whole Slice: %v \n", bookings)
 	//Printing thr first person that booked for a price
 	fmt.Printf("the first person: %v \n", bookings[0])
 	//printing the type of the array
-	fmt.Printf("the type of the array: %T \n", bookings)
+	fmt.Printf("the type of the Slice: %T \n", bookings)
 	//printing the lenght of the array
-	fmt.Printf("Array lenght: %v \n", len(bookings))
+	fmt.Printf("Slice lenght: %v \n", len(bookings))
 
 	fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v shortly.\n", firstName, lastName, userTicket, email)
 	fmt.Printf("%v tickets remaining for %v. \n", remainingTicket, conferenceName)
+	fmt.Printf("This ia all out current bookings %v.\n", bookings)
 
 }
