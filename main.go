@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 func main() {
@@ -48,24 +49,42 @@ func main() {
 		fmt.Println("how many tickets would you be buying?")
 		fmt.Scan(&userTicket)
 
-		//using the array
-		// bookings[0] = firstName + " " + lastName   -we use this for an array
-		//to perfome ops the vairble has to have the same type
-		remainingTicket = remainingTicket - userTicket
-		//using the slice
-		bookings = append(bookings, firstName+" "+lastName)
+		if userTicket <= remainingTicket {
+			//using the array
+			// bookings[0] = firstName + " " + lastName   -we use this for an array
+			//to perfome ops the vairble has to have the same type
+			remainingTicket = remainingTicket - userTicket
+			//using the slice
+			bookings = append(bookings, firstName+" "+lastName)
 
-		fmt.Printf("The whole Slice: %v \n", bookings)
-		//Printing thr first person that booked for a price
-		fmt.Printf("the first person: %v \n", bookings[0])
-		//printing the type of the array
-		fmt.Printf("the type of the Slice: %T \n", bookings)
-		//printing the lenght of the array
-		fmt.Printf("Slice lenght: %v \n", len(bookings))
+			fmt.Printf("The whole Slice: %v \n", bookings)
+			//Printing thr first person that booked for a price
+			fmt.Printf("the first person: %v \n", bookings[0])
+			//printing the type of the array
+			fmt.Printf("the type of the Slice: %T \n", bookings)
+			//printing the lenght of the array
+			fmt.Printf("Slice lenght: %v \n", len(bookings))
 
-		fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v shortly.\n", firstName, lastName, userTicket, email)
-		fmt.Printf("%v tickets remaining for %v. \n", remainingTicket, conferenceName)
-		fmt.Printf("This ia all out current bookings %v.\n", bookings)
+			fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v shortly.\n", firstName, lastName, userTicket, email)
+			fmt.Printf("%v tickets remaining for %v. \n", remainingTicket, conferenceName)
+
+			firstNames := []string{}
+			//to iterate through a list
+			for _, booking := range bookings {
+				//to remove the error of a variable we are not interested in uisng we use the "_"
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("the first names of bookings are: %v\n", firstNames)
+			fmt.Printf("This ia all out current bookings %v.\n", bookings)
+
+			var noTickets bool = remainingTicket == 0 //no need to save it in a variablethough but i am doing so to test bool
+			if noTickets {
+				fmt.Println("Our confernece tickets is sold out")
+				break
+			}
+		} else {
+			fmt.Printf("We only have %v tickets remianig, so you can't book %v tickets.\n", remainingTicket, userTicket)
+		}
 	}
-
 }
