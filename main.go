@@ -7,6 +7,7 @@ import (
 
 func main() {
 	conferenceName := "Go conference"
+	greetUsers(conferenceName)
 	const conferenceTicket = 50
 	var remainingTickets uint = 50
 
@@ -15,7 +16,6 @@ func main() {
 	fmt.Println("Welcome to our", conferenceName, "Booking service")
 	fmt.Println("we have total", conferenceTicket, "and remaining", remainingTickets)
 	fmt.Println("Please get your ticket here for", conferenceTicket)
-	fmt.Printf("Welcome to our %v \n", conferenceName)
 
 	// for for loop
 	var remainingTicket uint = 50
@@ -77,14 +77,9 @@ func main() {
 			fmt.Printf("Thank you %v %v for booking %v tickets. You will recieve a confirmation email at %v shortly.\n", firstName, lastName, userTicket, email)
 			fmt.Printf("%v tickets remaining for %v. \n", remainingTicket, conferenceName)
 
-			firstNames := []string{}
-			//to iterate through a list
-			for _, booking := range bookings {
-				//to remove the error of a variable we are not interested in uisng we use the "_"
-				var names = strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-			}
-			fmt.Printf("the first names of bookings are: %v\n", firstNames)
+			//call function print firstNames()
+			printFirstName(bookings)
+
 			fmt.Printf("This ia all out current bookings %v.\n", bookings)
 
 			var noTickets bool = remainingTicket == 0 //no need to save it in a variablethough but i am doing so to test bool
@@ -114,4 +109,19 @@ func main() {
 	// default:
 	// 	//to handle case whereuser enters improper code
 	// }
+}
+
+// connecting functions
+func greetUsers(conferenceName string) {
+	fmt.Printf("Welcome to %v.\n", conferenceName)
+}
+func printFirstName(bookings []string) {
+	firstNames := []string{}
+	//to iterate through a list
+	for _, booking := range bookings {
+		//to remove the error of a variable we are not interested in uisng we use the "_"
+		var names = strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+	}
+	fmt.Printf("the first names of bookings are: %v\n", firstNames)
 }
