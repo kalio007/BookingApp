@@ -58,7 +58,7 @@ func main() {
 		// isValidCity := city == "singapore" || city == "London"
 		// !isValidCity
 
-		if userTicket <= remainingTicket {
+		if isValName && isValidTicketNumber && isValEmail {
 			//using the array
 			// bookings[0] = firstName + " " + lastName   -we use this for an array
 			//to perfome ops the vairble has to have the same type
@@ -93,7 +93,25 @@ func main() {
 				break
 			}
 		} else {
-			fmt.Printf("We only have %v tickets remianig, so you can't book %v tickets.\n", remainingTicket, userTicket)
+			if !isValName {
+				fmt.Println("first name is too short!")
+			}
+			if !isValEmail {
+				fmt.Println("email does not contian the @ sign")
+			}
+			if !isValidTicketNumber {
+				fmt.Println("number of ticket entered is invalid")
+			}
 		}
 	}
+	//switch case statemt
+	// city := "London" //we can take this from our user
+	// switch city {
+	// case "London":
+	// 	//enter code for country booking
+	// case "Berlin", "New York":
+	// 	//enter code for country booking
+	// default:
+	// 	//to handle case whereuser enters improper code
+	// }
 }
