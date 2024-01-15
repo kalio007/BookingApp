@@ -22,6 +22,7 @@ func main() {
 	//slice
 	var bookings []string
 
+	//for loop, for true {} the true makes it run infintely, but we can add a condition there and teo using &&
 	for {
 		//create an array for the bookings
 		//array my have a size and its data type
@@ -48,6 +49,14 @@ func main() {
 		fmt.Scan(&userName)
 		fmt.Println("how many tickets would you be buying?")
 		fmt.Scan(&userTicket)
+
+		//validation
+		var isValName bool = len(firstName) >= 2 && len(lastName) >= 2
+		isValEmail := strings.Contains(email, "@")
+		isValidTicketNumber := userTicket > 0 && userTicket <= remainingTicket
+
+		// isValidCity := city == "singapore" || city == "London"
+		// !isValidCity
 
 		if userTicket <= remainingTicket {
 			//using the array
